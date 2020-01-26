@@ -11,8 +11,8 @@ namespace CompaniesYK.Core.Models
     public class Store : Base
     {
 
-
-        public int CompanyId { get; set; }
+        public string Company { get; set; }
+        public string CompanyId { get; set; }
         // Should this be int or something else since it comes from the Company class?
 
         [StringLength(100)]
