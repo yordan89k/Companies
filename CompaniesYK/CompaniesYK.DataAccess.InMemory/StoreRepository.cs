@@ -57,7 +57,7 @@ namespace CompaniesYK.DataAccess.InMemory
             }
             else
             {
-                throw new Exception("Company not found");
+                throw new Exception("Store not found");
             }
         }
 

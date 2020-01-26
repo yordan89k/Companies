@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,11 @@ namespace CompaniesYK.Core.Models
     {
 
         public string Company { get; set; }
+
+        [Key]
+        [ForeignKey("Company")]
         public string CompanyId { get; set; }
-        // Should this be int or something else since it comes from the Company class?
+        // Key attribute is realy needed ?
 
         [StringLength(100)]
         [DisplayName("Store Name")]

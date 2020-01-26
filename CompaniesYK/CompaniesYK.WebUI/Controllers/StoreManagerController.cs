@@ -1,4 +1,5 @@
 ﻿using CompaniesYK.Core.Models;
+using CompaniesYK.Core.ViewModels;
 using CompaniesYK.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace CompaniesYK.WebUI.Controllers
     public class StoreManagerController : Controller
     {
         StoreRepository context;
+        CompanyRepository companies;
 
         public StoreManagerController()
         {
             context = new StoreRepository();
+            companies = new CompanyRepository();
         }
         public ActionResult Index()
         {
@@ -25,8 +28,11 @@ namespace CompaniesYK.WebUI.Controllers
 
         public ActionResult Create()
         {
-            var store = new Store();
-            return View(store);
+            StoreManagerViewModel viewModel = new StoreManagerViewModel();
+            viewModel.Store = new Store();
+            viewModel.Companies = companies.Collection();
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -54,7 +60,10 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                return View(store);
+                StoreManagerViewModel viewModel = new StoreManagerViewModel();
+                viewModel.Store = store;
+                viewModel.Companies = companies.Collection();
+                return View(viewModel);
             }
         }
 
