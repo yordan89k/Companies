@@ -78,6 +78,7 @@ namespace CompaniesYK.WebUI.Controllers
                     companyToEdit.Name = company.Name;
                     companyToEdit.OrganizationNumber = company.OrganizationNumber;
                     companyToEdit.Logo = company.Logo;
+                    companyToEdit.Notes = company.Notes;
 
 
                     companyContext.Commit();
