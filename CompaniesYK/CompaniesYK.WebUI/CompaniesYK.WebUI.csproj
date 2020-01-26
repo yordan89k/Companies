@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -98,9 +101,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -179,6 +179,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompaniesYK.Core\CompaniesYK.Core.csproj">
+      <Project>{39b103ca-5d39-4c69-baa4-90e90ead8b98}</Project>
+      <Name>CompaniesYK.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompaniesYK.DataAccess.InMemory\CompaniesYK.DataAccess.InMemory.csproj">
+      <Project>{a3554ade-e8e1-4b7b-a8a9-6875f9701475}</Project>
+      <Name>CompaniesYK.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompaniesYK.DataAccess.SQL\CompaniesYK.DataAccess.SQL.csproj">
+      <Project>{ca405ff5-bdc1-4e40-b92e-1ff94ffdea26}</Project>
+      <Name>CompaniesYK.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CompaniesYK.Services\CompaniesYK.Services.csproj">
+      <Project>{e334d1fa-9c96-4b42-9c50-aafc33fd8033}</Project>
+      <Name>CompaniesYK.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
