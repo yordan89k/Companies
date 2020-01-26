@@ -46,7 +46,7 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
-        public ActionResult Edit(string Id)
+        public ActionResult Edit(Guid Id)
         {
             Company company = companyContext.Find(Id);
             if (company == null)
@@ -60,7 +60,7 @@ namespace CompaniesYK.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Company company, string Id)
+        public ActionResult Edit(Company company, Guid Id)
         {
             Company companyToEdit = companyContext.Find(Id);
             if (company == null)
@@ -88,7 +88,7 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
-        public ActionResult Delete(string Id)
+        public ActionResult Delete(Guid Id)
         {
             Company companyToDelete = companyContext.Find(Id);
 
@@ -103,7 +103,7 @@ namespace CompaniesYK.WebUI.Controllers
         }
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult ConfirmDelete(string Id)
+        public ActionResult ConfirmDelete(Guid Id)
         {
             Company companyToDelete = companyContext.Find(Id);
 

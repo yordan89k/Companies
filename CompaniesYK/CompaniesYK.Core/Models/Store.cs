@@ -15,7 +15,7 @@ namespace CompaniesYK.Core.Models
         public string OwnerCompany { get; set; }
 
         
-        public string CompanyId { get; set; }
+        public Guid CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
         // Key attribute is realy needed ?

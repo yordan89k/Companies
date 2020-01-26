@@ -49,7 +49,7 @@ namespace CompaniesYK.DataAccess.InMemory
             }
         }
 
-        public T Find(string Id)
+        public T Find(Guid Id)
         {
             T t = items.Find(i => i.Id == Id);
             if (t != null)
@@ -67,7 +67,7 @@ namespace CompaniesYK.DataAccess.InMemory
             return items.AsQueryable();
         }
 
-        public void Delete(string Id)
+        public void Delete(Guid Id)
         {
             T tToDelete = items.Find(i => i.Id == Id);
 

@@ -53,7 +53,7 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
-        public ActionResult Edit(string Id)
+        public ActionResult Edit(Guid Id)
         {
             Store store = storeContext.Find(Id);
             if (store == null)
@@ -70,7 +70,7 @@ namespace CompaniesYK.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Store store, string Id)
+        public ActionResult Edit(Store store, Guid Id)
         {
             Store storeToEdit = storeContext.Find(Id);
             if (store == null)
@@ -101,7 +101,7 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
-        public ActionResult Delete(string Id)
+        public ActionResult Delete(Guid Id)
         {
             Store storeToDelete = storeContext.Find(Id);
 
@@ -116,7 +116,7 @@ namespace CompaniesYK.WebUI.Controllers
         }
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult ConfirmDelete(string Id)
+        public ActionResult ConfirmDelete(Guid Id)
         {
             Store storeToDelete = storeContext.Find(Id);
 

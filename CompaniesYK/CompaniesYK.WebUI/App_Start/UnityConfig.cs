@@ -1,6 +1,7 @@
 using CompaniesYK.Core.Contracts;
 using CompaniesYK.Core.Models;
 using CompaniesYK.DataAccess.InMemory;
+using MyShopYK.DataAccess.SQL;
 using System;
 
 using Unity;
@@ -45,8 +46,8 @@ namespace CompaniesYK.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IRepository<Store>, InMemoryRepository<Store>>();
-            container.RegisterType<IRepository<Company>, InMemoryRepository<Company>>();
+            container.RegisterType<IRepository<Store>, SQLRepository<Store>>();
+            container.RegisterType<IRepository<Company>, SQLRepository<Company>>();
 
         }
     }

@@ -10,12 +10,12 @@ namespace CompaniesYK.Core.Models
     public abstract class Base
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
 
         public Base()
         {
-            this.Id = Guid.NewGuid().ToString();
+            this.Id = Guid.NewGuid();
             this.CreatedAt = DateTime.Now;
         }
     }
