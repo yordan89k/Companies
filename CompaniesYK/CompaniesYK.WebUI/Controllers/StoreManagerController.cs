@@ -85,7 +85,7 @@ namespace CompaniesYK.WebUI.Controllers
                 }
                 else
                 {
-                    storeToEdit.Company = store.Company;
+                    storeToEdit.OwnerCompany = store.OwnerCompany;
                     storeToEdit.Name = store.Name;
                     storeToEdit.Adress = store.Name; 
                     storeToEdit.City = store.Name;

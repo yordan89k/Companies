@@ -12,11 +12,12 @@ namespace CompaniesYK.Core.Models
     public class Store : Base
     {
 
-        public string Company { get; set; }
+        public string OwnerCompany { get; set; }
 
-        [Key]
-        [ForeignKey("Company")]
+        
         public string CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        public virtual Company Company { get; set; }
         // Key attribute is realy needed ?
 
         [StringLength(100)]
