@@ -1,4 +1,5 @@
-﻿using CompaniesYK.Core.Models;
+﻿using CompaniesYK.Core.Contracts;
+using CompaniesYK.Core.Models;
 using CompaniesYK.Core.ViewModels;
 using CompaniesYK.DataAccess.InMemory;
 using System;
@@ -12,14 +13,15 @@ namespace CompaniesYK.WebUI.Controllers
 
     public class StoreManagerController : Controller
     {
-        InMemoryRepository<Store> storeContext;
-        InMemoryRepository<Company> companyContext;
+        IRepository<Store> storeContext;
+        IRepository<Company> companyContext;
 
-        public StoreManagerController()
+        public StoreManagerController(IRepository<Store> storeContext, IRepository<Company> companyContext)
         {
-            storeContext = new InMemoryRepository<Store>();
-            companyContext = new InMemoryRepository<Company>();
+            this.storeContext = storeContext;
+            this.companyContext = companyContext;
         }
+
         public ActionResult Index()
         {
             List<Store> stores = storeContext.Collection().ToList();

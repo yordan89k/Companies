@@ -1,4 +1,5 @@
-﻿using CompaniesYK.Core.Models;
+﻿using CompaniesYK.Core.Contracts;
+using CompaniesYK.Core.Models;
 using CompaniesYK.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace CompaniesYK.WebUI.Controllers
 
     public class CompanyManagerController : Controller
     {
-        InMemoryRepository<Company> companyContext;
+        IRepository<Company> companyContext;
 
-        public CompanyManagerController()
+        public CompanyManagerController(IRepository<Company> companyContext)
         {
-            companyContext = new InMemoryRepository<Company>();
+            this.companyContext = companyContext;
         }
         public ActionResult Index()
         {

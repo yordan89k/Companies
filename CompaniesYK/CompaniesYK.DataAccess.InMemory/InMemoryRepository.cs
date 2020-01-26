@@ -1,4 +1,5 @@
-﻿using CompaniesYK.Core.Models;
+﻿using CompaniesYK.Core.Contracts;
+using CompaniesYK.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CompaniesYK.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T : Base
+    public class InMemoryRepository<T> : IRepository<T> where T : Base
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
