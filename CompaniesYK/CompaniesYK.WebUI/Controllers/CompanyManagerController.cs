@@ -11,15 +11,15 @@ namespace CompaniesYK.WebUI.Controllers
 
     public class CompanyManagerController : Controller
     {
-        CompanyRepository context;
+        InMemoryRepository<Company> companyContext;
 
         public CompanyManagerController()
         {
-            context = new CompanyRepository();
+            companyContext = new InMemoryRepository<Company>();
         }
         public ActionResult Index()
         {
-            List<Company> companies = context.Collection().ToList();
+            List<Company> companies = companyContext.Collection().ToList();
             return View(companies);
         }
 
@@ -38,8 +38,8 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                context.Insert(company);
-                context.Commit();
+                companyContext.Insert(company);
+                companyContext.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -47,7 +47,7 @@ namespace CompaniesYK.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Company company = context.Find(Id);
+            Company company = companyContext.Find(Id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -61,7 +61,7 @@ namespace CompaniesYK.WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(Company company, string Id)
         {
-            Company companyToEdit = context.Find(Id);
+            Company companyToEdit = companyContext.Find(Id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace CompaniesYK.WebUI.Controllers
                     companyToEdit.Logo = company.Logo;
 
 
-                    context.Commit();
+                    companyContext.Commit();
 
                     return RedirectToAction("Index");
                 }
@@ -88,7 +88,7 @@ namespace CompaniesYK.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Company companyToDelete = context.Find(Id);
+            Company companyToDelete = companyContext.Find(Id);
 
             if (companyToDelete == null)
             {
@@ -103,7 +103,7 @@ namespace CompaniesYK.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Company companyToDelete = context.Find(Id);
+            Company companyToDelete = companyContext.Find(Id);
 
             if (companyToDelete == null)
             {
@@ -111,8 +111,8 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                context.Delete(Id);
-                context.Commit();
+                companyContext.Delete(Id);
+                companyContext.Commit();
                 return RedirectToAction("Index");
             }
         }

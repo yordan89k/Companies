@@ -12,17 +12,17 @@ namespace CompaniesYK.WebUI.Controllers
 
     public class StoreManagerController : Controller
     {
-        StoreRepository context;
-        CompanyRepository companies;
+        InMemoryRepository<Store> storeContext;
+        InMemoryRepository<Company> companyContext;
 
         public StoreManagerController()
         {
-            context = new StoreRepository();
-            companies = new CompanyRepository();
+            storeContext = new InMemoryRepository<Store>();
+            companyContext = new InMemoryRepository<Company>();
         }
         public ActionResult Index()
         {
-            List<Store> stores = context.Collection().ToList();
+            List<Store> stores = storeContext.Collection().ToList();
             return View(stores);
         }
 
@@ -30,7 +30,7 @@ namespace CompaniesYK.WebUI.Controllers
         {
             StoreManagerViewModel viewModel = new StoreManagerViewModel();
             viewModel.Store = new Store();
-            viewModel.Companies = companies.Collection();
+            viewModel.Companies = companyContext.Collection();
 
             return View(viewModel);
         }
@@ -44,8 +44,8 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                context.Insert(store);
-                context.Commit();
+                storeContext.Insert(store);
+                storeContext.Commit();
 
                 return RedirectToAction("Index");
             }
@@ -53,7 +53,7 @@ namespace CompaniesYK.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Store store = context.Find(Id);
+            Store store = storeContext.Find(Id);
             if (store == null)
             {
                 return HttpNotFound();
@@ -62,7 +62,7 @@ namespace CompaniesYK.WebUI.Controllers
             {
                 StoreManagerViewModel viewModel = new StoreManagerViewModel();
                 viewModel.Store = store;
-                viewModel.Companies = companies.Collection();
+                viewModel.Companies = companyContext.Collection();
                 return View(viewModel);
             }
         }
@@ -70,7 +70,7 @@ namespace CompaniesYK.WebUI.Controllers
         [HttpPost]
         public ActionResult Edit(Store store, string Id)
         {
-            Store storeToEdit = context.Find(Id);
+            Store storeToEdit = storeContext.Find(Id);
             if (store == null)
             {
                 return HttpNotFound();
@@ -92,7 +92,7 @@ namespace CompaniesYK.WebUI.Controllers
                     storeToEdit.Longitude = store.Name;
                     storeToEdit.Latitude = store.Name;
 
-                    context.Commit();
+                    storeContext.Commit();
 
                     return RedirectToAction("Index");
                 }
@@ -101,7 +101,7 @@ namespace CompaniesYK.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Store storeToDelete = context.Find(Id);
+            Store storeToDelete = storeContext.Find(Id);
 
             if (storeToDelete == null)
             {
@@ -116,7 +116,7 @@ namespace CompaniesYK.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Store storeToDelete = context.Find(Id);
+            Store storeToDelete = storeContext.Find(Id);
 
             if (storeToDelete == null)
             {
@@ -124,8 +124,8 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                context.Delete(Id);
-                context.Commit();
+                storeContext.Delete(Id);
+                storeContext.Commit();
                 return RedirectToAction("Index");
             }
         }
