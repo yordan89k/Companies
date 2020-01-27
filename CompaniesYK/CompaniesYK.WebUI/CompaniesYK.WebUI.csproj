@@ -203,6 +203,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\CompanyImages\" />
+    <Folder Include="Content\DesignImages\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

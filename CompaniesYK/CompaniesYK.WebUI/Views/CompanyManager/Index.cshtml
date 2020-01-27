@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Manage Companies</h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -35,8 +35,8 @@
     <td>
         <img class="img-thumbnail" style="width:150px" src="~/Content/CompanyImages/@item.Logo">
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
+    <td class="tableAccent">
+        @Html.ActionLink(Html.DisplayFor(modelItem => item.Name).ToHtmlString(), "Edit", new { id = item.Id })
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.OrganizationNumber)

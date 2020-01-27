@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+    <h3>Manage Stores</h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -45,8 +45,8 @@
     {
         <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
+            <td class="tableAccent">
+                @Html.ActionLink(Html.DisplayFor(modelItem => item.Name).ToHtmlString(), "Edit", new { id = item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OwnerCompany)
