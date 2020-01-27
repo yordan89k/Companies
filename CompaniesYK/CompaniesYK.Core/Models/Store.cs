@@ -11,7 +11,7 @@ namespace CompaniesYK.Core.Models
 {
     public class Store : Base
     {
-
+        [DisplayName("Owner Company")]
         public string OwnerCompany { get; set; }
 
         

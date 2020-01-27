@@ -12,8 +12,8 @@ namespace CompaniesYK.Core.Models
     {
 
         [StringLength(225)]
-        [DisplayName("Company Name")]
         public string Name { get; set; }
+        [DisplayName("Num")]
         public int OrganizationNumber { get; set; }
         public string Notes { get; set; }
         public string Logo { get; set; }
