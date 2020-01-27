@@ -3,6 +3,7 @@ using CompaniesYK.Core.Models;
 using CompaniesYK.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,7 +32,7 @@ namespace CompaniesYK.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Company company)
+        public ActionResult Create(Company company, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -39,6 +40,12 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
+                if (file != null)
+                {
+                    company.Logo = company.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//CompanyImages//") + company.Logo);
+                }
+
                 companyContext.Insert(company);
                 companyContext.Commit();
 
@@ -60,7 +67,7 @@ namespace CompaniesYK.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Company company, Guid Id)
+        public ActionResult Edit(Company company, Guid Id, HttpPostedFileBase file)
         {
             Company companyToEdit = companyContext.Find(Id);
             if (company == null)
@@ -73,13 +80,17 @@ namespace CompaniesYK.WebUI.Controllers
                 {
                     return View(company);
                 }
-                else
+
+                if (file != null)
+                {
+                    companyToEdit.Logo = company.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//CompanyImages//") + companyToEdit.Logo);
+                }
+
                 {
                     companyToEdit.Name = company.Name;
                     companyToEdit.OrganizationNumber = company.OrganizationNumber;
-                    companyToEdit.Logo = company.Logo;
                     companyToEdit.Notes = company.Notes;
-
 
                     companyContext.Commit();
 
