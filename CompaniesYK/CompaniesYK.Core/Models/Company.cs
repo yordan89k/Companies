@@ -11,9 +11,11 @@ namespace CompaniesYK.Core.Models
     public class Company : Base
     {
 
+        [Required]
         [StringLength(225)]
         public string Name { get; set; }
         [DisplayName("Num")]
+        [Required]
         public int OrganizationNumber { get; set; }
         public string Notes { get; set; }
         public string Logo { get; set; }
