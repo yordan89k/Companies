@@ -129,6 +129,5 @@ namespace CompaniesYK.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
-
     }
 }

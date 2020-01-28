@@ -199,6 +199,7 @@
     <Content Include="Views\CompanyManager\Create.cshtml" />
     <Content Include="Views\CompanyManager\Edit.cshtml" />
     <Content Include="Views\CompanyManager\Delete.cshtml" />
+    <Content Include="Views\StoreManager\SelectCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

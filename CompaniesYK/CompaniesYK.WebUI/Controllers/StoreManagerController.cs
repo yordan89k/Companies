@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace CompaniesYK.WebUI.Controllers
 {
@@ -28,11 +30,20 @@ namespace CompaniesYK.WebUI.Controllers
             return View(stores);
         }
 
-        public ActionResult Create()
+        public ActionResult SelectCompany()
         {
-            StoreManagerViewModel viewModel = new StoreManagerViewModel();
+            List<Company> companies = companyContext.Collection().ToList();
+            return View(companies);
+        }
+
+        public ActionResult Create(Guid companyId, string companyName)
+        {
+            var viewModel = new StoreManagerViewModel();
             viewModel.Store = new Store();
+
             viewModel.Companies = companyContext.Collection();
+            viewModel.SelectedCompanyId = companyId.ToString();
+            viewModel.SelectedCompanyName = companyName.ToString();
 
             return View(viewModel);
         }
@@ -62,7 +73,7 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                StoreManagerViewModel viewModel = new StoreManagerViewModel();
+                var viewModel = new StoreManagerViewModel();
                 viewModel.Store = store;
                 viewModel.Companies = companyContext.Collection();
                 return View(viewModel);
@@ -131,6 +142,28 @@ namespace CompaniesYK.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+        /* Method to recognise a name of a company and get output of its Guid Id as string
+         * 
+        public string FetchCompanyId(string NameInput)
+        {
+            string CompanyIdFetched = "";
+            NameInput = "Wise Home";
+
+
+            foreach (var company in companyContext.Collection())
+            {
+                if (NameInput == company.Name)
+                {
+                    CompanyIdFetched = company.Id.ToString();
+
+                }
+            }
+
+            return CompanyIdFetched;
+        }
+        */
 
     }
 }

@@ -80,8 +80,5 @@ namespace CompaniesYK.DataAccess.InMemory
                 throw new Exception(className + " not found");
             }
         }
-
-
-
     }
 }

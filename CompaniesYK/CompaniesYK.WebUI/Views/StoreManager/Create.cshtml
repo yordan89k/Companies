@@ -27,14 +27,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Store.OwnerCompany, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Store.OwnerCompany, new { @Value = Model.SelectedCompanyName, @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Store.OwnerCompany, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Store.CompanyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Store.CompanyId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Store.CompanyId, new { @Value = Model.SelectedCompanyId, @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.Store.CompanyId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -92,6 +93,10 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
+
+
+
     </div>
 }
 
@@ -102,3 +107,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+@* Code for dropdown list - @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } }) *@

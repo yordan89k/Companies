@@ -11,5 +11,8 @@ namespace CompaniesYK.Core.ViewModels
     {
         public Store Store { get; set; }
         public IEnumerable<Company> Companies { get; set; }
+        public string SelectedCompanyId { get; set; }
+        public string SelectedCompanyName { get; set; }
+
     }
 }

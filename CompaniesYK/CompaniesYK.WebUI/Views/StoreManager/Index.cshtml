@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<CompaniesYK.Core.Models.Store>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage Stores";
 }
+<br>
+<h3>Manage Stores</h3>
 
-    <h3>Manage Stores</h3>
+<div class="btn btn-default" style="margin-bottom:20px">
+    @Html.ActionLink("Create new Store", "SelectCompany")
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div>
+    <br>
+</div>
 <table class="table">
     <tr>
         <th>
