@@ -94,12 +94,11 @@ summary {
 }
 
 .detailscont {
-    min-height: 400px;
     display: inline-block;
+    background-position: center;
     overflow: auto;
     margin: 5px auto;
     padding: 5px;
-    min-height: 500px;
 }
 
 .authorcomment {

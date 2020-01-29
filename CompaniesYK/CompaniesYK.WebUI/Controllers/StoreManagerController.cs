@@ -98,12 +98,12 @@ namespace CompaniesYK.WebUI.Controllers
                 {
                     storeToEdit.OwnerCompany = store.OwnerCompany;
                     storeToEdit.Name = store.Name;
-                    storeToEdit.Adress = store.Name; 
-                    storeToEdit.City = store.Name;
-                    storeToEdit.Zip = store.Name;
-                    storeToEdit.Country = store.Name;
-                    storeToEdit.Longitude = store.Name;
-                    storeToEdit.Latitude = store.Name;
+                    storeToEdit.Adress = store.Adress; 
+                    storeToEdit.City = store.City;
+                    storeToEdit.Zip = store.Zip;
+                    storeToEdit.Country = store.Country;
+                    storeToEdit.Longitude = store.Longitude;
+                    storeToEdit.Latitude = store.Latitude;
 
                     storeContext.Commit();
 

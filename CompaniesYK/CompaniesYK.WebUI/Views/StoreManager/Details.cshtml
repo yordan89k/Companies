@@ -14,95 +14,100 @@
 <h4>@Model.Name</h4>
 <hr />
 
-<div class="col-md-7 detailscont" style="float: left;">
+<div class="row">
+    <div class="col-md-7 container detailscont" style="float: left;">
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedAt)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OwnerCompany)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.OwnerCompany)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OwnerCompany)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.OwnerCompany)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CompanyId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Adress)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Adress)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Adress)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Adress)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Zip)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Zip)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Zip)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Zip)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Longitude)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Latitude)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+
+    <div id="map" ; class="col-md-5 container detailscont" style="float: right;"></div>
+
+    <p class="authorcomment"> * Here you see all exisiting information in the DataBase + location on a map</p>
 </div>
 
-<div id="map" ; class="col-md-5 detailscont" style="float: right;"></div>
 
-<p class="authorcomment"> &rArr; Here you see all exisiting information in the DataBase + location on a map</p>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7t-mN9B320kc-cG7mFrN0ptTMtFE4iPo&callback=initMap" async defer></script>
 
