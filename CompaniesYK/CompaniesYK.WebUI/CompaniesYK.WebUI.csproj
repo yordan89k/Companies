@@ -193,13 +193,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\StoreManager\Index.cshtml" />
     <Content Include="Views\StoreManager\Create.cshtml" />
-    <Content Include="Views\StoreManager\Edit.cshtml" />
     <Content Include="Views\StoreManager\Delete.cshtml" />
     <Content Include="Views\CompanyManager\Index.cshtml" />
     <Content Include="Views\CompanyManager\Create.cshtml" />
     <Content Include="Views\CompanyManager\Edit.cshtml" />
     <Content Include="Views\CompanyManager\Delete.cshtml" />
     <Content Include="Views\StoreManager\SelectCompany.cshtml" />
+    <Content Include="Views\StoreManager\Details.cshtml" />
+    <Content Include="Views\StoreManager\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

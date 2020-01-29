@@ -89,9 +89,25 @@ summary {
     font-weight: bold;
 }
 
+#map {
+    min-height: 300px;
+}
 
+.detailscont {
+    min-height: 400px;
+    display: inline-block;
+    overflow: auto;
+    margin: 5px auto;
+    padding: 5px;
+    min-height: 500px;
+}
 
-
+.authorcomment {
+    font-size: 100%;
+    font-style: italic;
+    color: grey;
+}
+/* End of my custom CSS classes*/
 audio,
 canvas,
 progress,

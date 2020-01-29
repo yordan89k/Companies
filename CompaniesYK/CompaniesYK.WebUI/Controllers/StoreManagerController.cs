@@ -143,6 +143,19 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
+        public ActionResult Details(Guid Id)
+        {
+            var store = storeContext.Find(Id);
+            if (store == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(store);
+            }
+        }
+
 
         /* Method to recognise a name of a company and get output of its Guid Id as string
          * 

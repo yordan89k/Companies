@@ -1,0 +1,125 @@
+﻿@model CompaniesYK.Core.Models.Store
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<h4>@Model.Name</h4>
+<hr />
+
+<div class="col-md-7 detailscont" style="float: left;">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+    </dl>
+</div>
+
+<div id="map" ; class="col-md-5 detailscont" style="float: right;"></div>
+
+<p class="authorcomment"> &rArr; Here you see all exisiting information in the DataBase + location on a map</p>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7t-mN9B320kc-cG7mFrN0ptTMtFE4iPo&callback=initMap" async defer></script>
+
+<script>
+
+    function initMap() {
+        var lata = @Html.Raw(Json.Encode(Model.Latitude));
+        var lata = Number(lata);
+
+        var longa = @Html.Raw(Json.Encode(Model.Longitude));
+        var longa = Number(longa);
+
+
+        var sloc = { lat: lata, lng: longa };
+
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 4, center: sloc });
+        var marker = new google.maps.Marker({ position: sloc, map: map });
+    }
+</script>
