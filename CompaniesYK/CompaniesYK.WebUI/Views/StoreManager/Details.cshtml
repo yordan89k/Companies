@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-    <h2>@Model.Name</h2>
+<h2>@Model.Name</h2>
 
 
 
@@ -127,7 +127,7 @@
         var sloc = { lat: lata, lng: longa };
 
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 4, center: sloc });
+            document.getElementById('map'), { zoom: 5, center: sloc });
         var marker = new google.maps.Marker({ position: sloc, map: map });
     }
 </script>

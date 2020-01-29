@@ -4,107 +4,138 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Creat</h2>
+<br>
+<br>
+<h4>Creating store to: <strong>@Model.SelectedCompanyName</strong></h4>
+<hr />
+
+<div class="container col-md-12">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal container detailscont col-md-7" style="float:left">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="col-md-12">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+            <div class="col-md-10 container detailscont" style="float:left">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Store.OwnerCompany, new { @Value = Model.SelectedCompanyName, @readonly = "readonly", @type = "hidden" })
+                        @Html.ValidationMessageFor(model => model.Store.OwnerCompany, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Store.CompanyId, new { @Value = Model.SelectedCompanyId, @readonly = "readonly", @type = "hidden" })
+                        @Html.ValidationMessageFor(model => model.Store.CompanyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Store.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Store.Country, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.Adress, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Store.Adress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.Zip, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        @Html.ValidationMessageFor(model => model.Store.Zip, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+            <div class="col-md-8 container" style="border: solid 1px rgb(224, 235, 235);">
+                <div class="btn btn-default" style="margin:20px;">
+                    @Html.ActionLink("Fetch GPS coordinates", "")
+                </div>
 
-<div class="form-horizontal">
-    <h4>Adding store to: <strong>@Model.SelectedCompanyName</strong></h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.Longitude, new { htmlAttributes = new { @class = "form-control col-md-3" } })
+                        @Html.ValidationMessageFor(model => model.Store.Longitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Store.OwnerCompany, new { @Value = Model.SelectedCompanyName, @readonly = "readonly", @type="hidden" })
-            @Html.ValidationMessageFor(model => model.Store.OwnerCompany, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Store.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Store.Latitude, new { htmlAttributes = new { @class = "form-control col-md-3" } })
+                        @Html.ValidationMessageFor(model => model.Store.Latitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12 container" style="margin-top:30px">
+                <input type="submit" value="Create Store" class="btn btn-lg" />
+            </div>
         </div>
+    }
+
+    <div id="map" class="col-md-5 container detailscont" style="float:right; margin-top:80px;">
     </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Store.CompanyId, new { @Value = Model.SelectedCompanyId, @readonly = "readonly", @type="hidden" })
-            @Html.ValidationMessageFor(model => model.Store.CompanyId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Store.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Store.Country, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.Adress, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.Adress, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Store.Adress, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.Zip, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
-            @Html.ValidationMessageFor(model => model.Store.Zip, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.Longitude, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Store.Longitude, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Store.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Store.Latitude, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Store.Latitude, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-
-
-
-
 </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7t-mN9B320kc-cG7mFrN0ptTMtFE4iPo&callback=initMap" async defer></script>
+
+<script>
+
+    function initMap() {
+        var lata = @Html.Raw(Json.Encode(Model.Store.Latitude));
+        var lata = Number(lata);
+
+        var longa = @Html.Raw(Json.Encode(Model.Store.Longitude));
+        var longa = Number(longa);
+
+
+        var sloc = { lat: lata, lng: longa };
+
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 5, center: sloc });
+        var marker = new google.maps.Marker({ position: sloc, map: map });
+    }
+</script>
+
 
 
 @* Code for dropdown list - @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } }) *@
