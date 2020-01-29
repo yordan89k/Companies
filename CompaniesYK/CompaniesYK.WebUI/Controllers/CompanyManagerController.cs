@@ -129,5 +129,18 @@ namespace CompaniesYK.WebUI.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        public ActionResult Details(Guid Id)
+        {
+            var company = companyContext.Find(Id);
+            if (company == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(company);
+            }
+        }
     }
 }
