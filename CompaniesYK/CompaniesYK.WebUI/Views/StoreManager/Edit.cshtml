@@ -3,8 +3,12 @@
 @{
     ViewBag.Title = "Edit";
 }
+<br>
+<h3>Editing @Model.Store.Name</h3>
 
-<h2>Edit</h2>
+<div class="btn btn-default" style="margin-bottom:20px">
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
 
 @using (Html.BeginForm("Edit", "StoreManager", FormMethod.Post, new { encType = "multipart/form-data" }))
@@ -12,7 +16,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Store</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Store.Id)
@@ -33,6 +36,8 @@
         </div>
     </div>
 
+@* -- Edit field for CompanyId --
+
     <div class="form-group">
         @Html.LabelFor(model => model.Store.CompanyId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -40,6 +45,7 @@
             @Html.ValidationMessageFor(model => model.Store.CompanyId, "", new { @class = "text-danger" })
         </div>
     </div>
+*@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -89,16 +95,12 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+    <div class="form-group container">
+        <div class="col-md-offset-2 col-md-10" style="margin:20px">
+            <input type="submit" value="Save changes" class="btn btn-default" />
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

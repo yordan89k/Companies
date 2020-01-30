@@ -106,7 +106,15 @@ summary {
     font-style: italic;
     color: grey;
 }
-/* End of my custom CSS classes*/
+
+.iconintext {
+   float:left;
+   margin-right: 5px;
+}
+
+/* -- End of my custom CSS classes -- */
+
+
 audio,
 canvas,
 progress,
@@ -6661,8 +6669,9 @@ button.list-group-item-danger {
 .panel-title {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 15px;
+    font-size: 16px;
     color: inherit;
+    text-align:center;
 }
 
     .panel-title > a,

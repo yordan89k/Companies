@@ -98,10 +98,7 @@ namespace CompaniesYK.WebUI.Controllers
                 storeContext.Insert(store);
                 storeContext.Commit();
 
-                //  return RedirectToAction("Index");
-                return RedirectToAction("Details", new { Id = store.Id });
-               // return RedirectToAction("Details", new RouteValueDictionary(
-                 // new { controller = "StoreManager", action = "Details", Id = store.Id }));
+                return RedirectToAction("StoreCreated", new { Id = store.Id });
             }
         }
 
@@ -185,6 +182,19 @@ namespace CompaniesYK.WebUI.Controllers
         }
 
         public ActionResult Details(Guid Id)
+        {
+            var store = storeContext.Find(Id);
+            if (store == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(store);
+            }
+        }
+
+        public ActionResult StoreCreated(Guid Id)
         {
             var store = storeContext.Find(Id);
             if (store == null)

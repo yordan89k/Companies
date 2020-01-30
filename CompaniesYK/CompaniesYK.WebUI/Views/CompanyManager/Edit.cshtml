@@ -5,23 +5,28 @@
 }
 
 <br>
-<h2>@Model.Name</h2>
+<h3>Editing @Model.Name</h3>
 
 
 @using (Html.BeginForm("Edit", "CompanyManager", FormMethod.Post, new { encType = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
+    <div class="btn btn-default" style="margin-bottom:20px">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
     <div class="form-horizontal">
-        <h4>Edit</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <img class="img-responsive" src="~/Content/CompanyImages/@Model.Logo" />
         </div>
-        <div class="col-md-10">
+
+        <div class="col-md-9">
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,31 +46,32 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10" rows="3">
-                    @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control"} })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control", @style = "max-width: 100%" } })
                     @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" id="file" name="file" class="form-control" />
+            <div class="form-group col-md-6" style="border: solid 1px rgb(224, 235, 235);">
+                <div class="form-group" style="margin:10px; padding:5px">
+                    @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="file" name="file" class="form-control" />
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                <div class="col-md-offset-1 col-md-10">
+                    <input type="submit" value="Save changes" class="btn btn-default" />
                 </div>
             </div>
+
+
+
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

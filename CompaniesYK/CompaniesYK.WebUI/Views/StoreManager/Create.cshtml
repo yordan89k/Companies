@@ -9,103 +9,116 @@
 <h4>Creating store to: <strong>@Model.SelectedCompanyName</strong></h4>
 <hr />
 
-<div class="container col-md-12">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+<div class="col-lg-12">
+    <div class="col-md-7 container detailscont" style="float: left;">
+        <div class="container col-md-12">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-horizontal container detailscont col-md-12">
 
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-horizontal container detailscont col-md-12">
 
-            <div class="col-md-12">
-                @Html.ActionLink("Back to List", "Index")
-            </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="col-md-10 container detailscont" style="float:left">
-                <div class="form-group">
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Store.OwnerCompany, new { @Value = Model.SelectedCompanyName, @readonly = "readonly", @type = "hidden" })
-                        @Html.ValidationMessageFor(model => model.Store.OwnerCompany, "", new { @class = "text-danger" })
+                    <div class="col-md-12">
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+
+                    <div class="col-md-10 container detailscont" style="float:left">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Store.OwnerCompany, new { @Value = Model.SelectedCompanyName, @readonly = "readonly", @type = "hidden" })
+                                @Html.ValidationMessageFor(model => model.Store.OwnerCompany, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Store.CompanyId, new { @Value = Model.SelectedCompanyId, @readonly = "readonly", @type = "hidden" })
+                                @Html.ValidationMessageFor(model => model.Store.CompanyId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Store.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Store.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Store.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control", @id = "CountryField", @name = "CountryField" } })
+                                @Html.ValidationMessageFor(model => model.Store.Country, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Store.Adress, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Store.Adress, new { htmlAttributes = new { @class = "form-control", @id = "AdressField", @name = "AdressField" } })
+                                @Html.ValidationMessageFor(model => model.Store.Adress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control", @id = "CityField", @name = "CityField" } })
+                                @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Store.Zip, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "input", @type = "number", @id = "ZipField", @name = "CityField" } })
+                                @Html.ValidationMessageFor(model => model.Store.Zip, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+
+                        <div class="hidden">
+                            <input type="text" id="CountryField2" name="CountryField2" /> <br>
+                            <input type="text" id="AdressField2" name="AdressField2" /> <br>
+                            <input type="text" id="CityField2" name="CityField2" /> <br>
+                            <input type="text" id="ZipField2" name="ZipField2" /> <br>
+                        </div>
+                        <br>
+
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Store.CompanyId, new { @Value = Model.SelectedCompanyId, @readonly = "readonly", @type = "hidden" })
-                        @Html.ValidationMessageFor(model => model.Store.CompanyId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Store.Name, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Store.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control", @id = "CountryField", @name = "CountryField" } })
-                        @Html.ValidationMessageFor(model => model.Store.Country, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Store.Adress, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Adress, new { htmlAttributes = new { @class = "form-control", @id = "AdressField", @name = "AdressField" } })
-                        @Html.ValidationMessageFor(model => model.Store.Adress, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control", @id = "CityField", @name = "CityField" } })
-                        @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Store.Zip, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "input", @type = "number", @id = "ZipField", @name = "CityField" } })
-                        @Html.ValidationMessageFor(model => model.Store.Zip, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-
-                <div class="hidden">
-                    <input type="text" id="CountryField2" name="CountryField2" /> <br>
-                    <input type="text" id="AdressField2" name="AdressField2" /> <br>
-                    <input type="text" id="CityField2" name="CityField2" /> <br>
-                    <input type="text" id="ZipField2" name="ZipField2" /> <br>
-                </div>
-
-
-
-                @*
-                    <div class="form-group col-md-12">
-                        Adress B: <input type="text" id="adressb" name="adressb" />
-                        <br />
-                    </div>
-
-                *@
-
-                <br>
-
-            </div>
+            }
         </div>
-    }
+    </div>
+
+
+
+    <div class="col-md-5 detailscont panel panel-info" style="float: right;">
+        <div class="panel-heading">
+            <h3 class="panel-title">When creating new store</h3>
+        </div>
+        <div class="panel-body">
+            <p>This store is already linked to the company you selencted. Company's name and Id will be stored in the DataBase.</p>
+            <img class="iconintext" src="~/Content/DesignImages/maps.png"  />
+            <p>
+                Based on the address you enter GPS coordinates (Latitude and Longitude)
+                will be generated with the help of Gooogle Maps API and automatically stored in the DataBase. You can edit the later if needed.
+            </p>
+        </div>
+    </div>
+
 </div>
+
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.min.js"></script>
 <script>
@@ -140,87 +153,10 @@
 
 </script>
 
-@*
-    <div class="form-group col-md-12">
-        Adress: <input type="text" id="adressb" name="adressb" /><br />
-    </div>
-*@
-
-
-@* VIEW TO GET GPS COORDINATES - OLD
-    <div class="col-md-8 container" style="border: solid 1px rgb(224, 235, 235);">
-        <div class="btn btn-default" style="margin:20px;">
-            @Html.ActionLink("Fetch GPS coordinates", "GeocodeInput", "Geocoding")
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Store.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Store.Longitude, new { htmlAttributes = new { @class = "form-control col-md-3", @id = "LongField" } })
-                @Html.ValidationMessageFor(model => model.Store.Longitude, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Store.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Store.Latitude, new { htmlAttributes = new { @class = "form-control col-md-3", @id = "LatiField" } })
-                @Html.ValidationMessageFor(model => model.Store.Latitude, "", new { @class = "text-danger" })
-            </div>
-        </div>
-*@
-
-@*
-    <div class="col-md-12">
-
-        <form action="GeocodeInput" method="post">
-
-            <div class="form-group col-md-12">
-                Adress: <input type="text" id="adressb" name="adressb" /><br />
-                @*RIGHT NOW THE THE CONTROLLER IS LOOKING FOR ADRESSB INPUT FILED BUT IT IS HEAR, OUTSIDE THE MAIN FORM. TO MOVE IT UP
-            </div>
-
-            <div class="col-md-12">
-                <input id="Submit" name="Submit" type="submit" value="Start" class="btn-primary">
-            </div>
-
-        </form>
-    </div>
-
-
-
-            <div id="map" class="col-md-5 container detailscont" style="float:right; margin-top:80px;">
-            </div>
-    </div>
-*@
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-@*
-        PUTS A MARKER
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7t-mN9B320kc-cG7mFrN0ptTMtFE4iPo&callback=initMap" async defer></script>
-
-    <script>
-
-            function initMap() {
-                var lata = @Html.Raw(Json.Encode(Model.Store.Latitude));
-                var lata = Number(lata);
-
-                var longa = @Html.Raw(Json.Encode(Model.Store.Longitude));
-                var longa = Number(longa);
-
-
-                var sloc = { lat: lata, lng: longa };
-
-                var map = new google.maps.Map(
-                    document.getElementById('map'), { zoom: 5, center: sloc });
-                var marker = new google.maps.Marker({ position: sloc, map: map });
-            }
-    </script>
-*@
 
 
 @* Code for dropdown list - @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } }) *@
