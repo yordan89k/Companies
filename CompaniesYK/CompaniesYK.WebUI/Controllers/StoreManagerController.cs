@@ -5,10 +5,12 @@ using CompaniesYK.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace CompaniesYK.WebUI.Controllers
 {
@@ -17,6 +19,7 @@ namespace CompaniesYK.WebUI.Controllers
     {
         IRepository<Store> storeContext;
         IRepository<Company> companyContext;
+        
 
         public StoreManagerController(IRepository<Store> storeContext, IRepository<Company> companyContext)
         {
@@ -53,10 +56,41 @@ namespace CompaniesYK.WebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
+
                 return View(store);
             }
             else
             {
+                string adressb = Request.Form["adressb"];
+
+                string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressb));
+
+                WebRequest request = WebRequest.Create(requestUri);
+                WebResponse response = request.GetResponse();
+
+                //To try to get it with JSON
+
+                XDocument xdoc = XDocument.Load(response.GetResponseStream());
+                XElement result = xdoc.Element("GeocodeResponse").Element("result");
+                XElement locationElement = result.Element("geometry").Element("location");
+
+                XElement lat = locationElement.Element("lat");
+                XElement lng = locationElement.Element("lng");
+
+                var reader = lat.CreateReader();
+                reader.MoveToContent();
+                string resultLat = reader.ReadInnerXml();
+
+                var reader2 = lng.CreateReader();
+                reader2.MoveToContent();
+                string resultLng = reader2.ReadInnerXml();
+
+                store.Longitude = resultLng;
+                store.Latitude = store.Latitude;
+
+                string resultLocation = $"{resultLat}, {resultLng}";
+
+
                 storeContext.Insert(store);
                 storeContext.Commit();
 
@@ -156,27 +190,44 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
-
-        /* Method to recognise a name of a company and get output of its Guid Id as string
-         * 
-        public string FetchCompanyId(string NameInput)
+        public ActionResult GeocodeInput()
         {
-            string CompanyIdFetched = "";
-            NameInput = "Wise Home";
+            /*
+            string CountryInp = Request.Form["CountryField"];
+            string CityInp = Request.Form["CityField"];
+            string AdressInp = Request.Form["AdressField"];
+            string ZipInp = Request.Form["ZipField"];
+            string address = $"{ZipInp} {AdressInp}, {CityInp}, {CountryInp}";
+            */
 
+            string adressb = Request.Form["adressb"];
 
-            foreach (var company in companyContext.Collection())
-            {
-                if (NameInput == company.Name)
-                {
-                    CompanyIdFetched = company.Id.ToString();
+            string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressb));
 
-                }
-            }
+            WebRequest request = WebRequest.Create(requestUri);
+            WebResponse response = request.GetResponse();
 
-            return CompanyIdFetched;
+            //To try to get it with JSON
+
+            XDocument xdoc = XDocument.Load(response.GetResponseStream());
+            XElement result = xdoc.Element("GeocodeResponse").Element("result");
+            XElement locationElement = result.Element("geometry").Element("location");
+
+            XElement lat = locationElement.Element("lat");
+            XElement lng = locationElement.Element("lng");
+
+            var reader = lat.CreateReader();
+            reader.MoveToContent();
+            string resultLat = reader.ReadInnerXml();
+
+            var reader2 = lng.CreateReader();
+            reader2.MoveToContent();
+            string resultLng = reader2.ReadInnerXml();
+
+            string resultLocation = $"{resultLat}, {resultLng}";
+
+            TempData["Message"] = resultLocation;
+            return RedirectToAction("Create", "StoreManager");
         }
-        */
-
     }
 }

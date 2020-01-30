@@ -48,7 +48,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control", @id = "CountryField" } })
                         @Html.ValidationMessageFor(model => model.Store.Country, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Store.Adress, htmlAttributes: new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Store.Adress, new { htmlAttributes = new { @class = "form-control", @id = "AdressField" } })
                         @Html.ValidationMessageFor(model => model.Store.Adress, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control", @id = "CityField" } })
                         @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Store.Zip, htmlAttributes: new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "form-control", @type = "number", @id = "ZipField" } })
                         @Html.ValidationMessageFor(model => model.Store.Zip, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -81,13 +81,13 @@
 
             <div class="col-md-8 container" style="border: solid 1px rgb(224, 235, 235);">
                 <div class="btn btn-default" style="margin:20px;">
-                    @Html.ActionLink("Fetch GPS coordinates", "")
+                    @Html.ActionLink("Fetch GPS coordinates", "GeocodeInput", "Geocoding")
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Store.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Longitude, new { htmlAttributes = new { @class = "form-control col-md-3" } })
+                        @Html.EditorFor(model => model.Store.Longitude, new { htmlAttributes = new { @class = "form-control col-md-3", @id = "LongField" } })
                         @Html.ValidationMessageFor(model => model.Store.Longitude, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Store.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.Store.Latitude, new { htmlAttributes = new { @class = "form-control col-md-3" } })
+                        @Html.EditorFor(model => model.Store.Latitude, new { htmlAttributes = new { @class = "form-control col-md-3", @id = "LatiField" } })
                         @Html.ValidationMessageFor(model => model.Store.Latitude, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -106,8 +106,23 @@
         </div>
     }
 
-    <div id="map" class="col-md-5 container detailscont" style="float:right; margin-top:80px;">
-    </div>
+<div class="col-md-12">
+    <form action="GeocodeInput" method="post">
+
+        <div class="form-group col-md-12">
+            Adress: <input type="text" id="adressb" name="adressb" /><br />
+            @*RIGHT NOW THE THE CONTROLLER IS LOOKING FOR ADRESSB INPUT FILED BUT IT IS HEAR, OUTSIDE THE MAIN FORM. TO MOVE IT UP*@
+        </div>
+
+        <div class="col-md-12">
+            <input id="Submit" name="Submit" type="submit" value="Start" class="btn-primary">
+        </div>
+
+    </form>
+</div>
+
+        <div id="map" class="col-md-5 container detailscont" style="float:right; margin-top:80px;">
+        </div>
 </div>
 
 
@@ -116,26 +131,78 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
+
+ PUTS A MARKER
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7t-mN9B320kc-cG7mFrN0ptTMtFE4iPo&callback=initMap" async defer></script>
 
 <script>
 
-    function initMap() {
-        var lata = @Html.Raw(Json.Encode(Model.Store.Latitude));
-        var lata = Number(lata);
+        function initMap() {
+            var lata = @Html.Raw(Json.Encode(Model.Store.Latitude));
+            var lata = Number(lata);
 
-        var longa = @Html.Raw(Json.Encode(Model.Store.Longitude));
-        var longa = Number(longa);
+            var longa = @Html.Raw(Json.Encode(Model.Store.Longitude));
+            var longa = Number(longa);
 
 
-        var sloc = { lat: lata, lng: longa };
+            var sloc = { lat: lata, lng: longa };
 
-        var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 5, center: sloc });
-        var marker = new google.maps.Marker({ position: sloc, map: map });
-    }
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 5, center: sloc });
+            var marker = new google.maps.Marker({ position: sloc, map: map });
+        }
 </script>
 
+
+
+@* GETS YOU POSTIONS
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7t-mN9B320kc-cG7mFrN0ptTMtFE4iPo&callback=initMap">
+    </script>
+            <script>
+          // Note: This example requires that you consent to location sharing when
+          // prompted by your browser. If you see the error "The Geolocation service
+          // failed.", it means you probably did not give permission for the browser to
+          // locate you.
+          var map, infoWindow;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: -34.397, lng: 150.644},
+              zoom: 6
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('Location found.');
+                infoWindow.open(map);
+                map.setCenter(pos);
+
+              }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+              });
+            } else {
+              // Browser doesn't support Geolocation
+              handleLocationError(false, infoWindow, map.getCenter());
+            }
+          }
+
+          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                                  'Error: The Geolocation service failed.' :
+                                  'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+          }
+        </script>
+*@
 
 
 @* Code for dropdown list - @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } }) *@
