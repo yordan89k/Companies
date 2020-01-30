@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
@@ -61,9 +62,14 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
-                string adressb = Request.Form["adressb"];
+                string CountryInp = Request.Form["CountryField2"];
+                string CityInp = Request.Form["CityField2"];
+                string AdressInp = Request.Form["AdressField2"];
 
-                string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressb));
+                // string ZipInp = Request.Form["ZipField2"];  - In case Zip needs to be included as well
+                string adressFull = $"{AdressInp}, {CityInp}, {CountryInp}";
+
+                string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressFull));
 
                 WebRequest request = WebRequest.Create(requestUri);
                 WebResponse response = request.GetResponse();
@@ -80,21 +86,22 @@ namespace CompaniesYK.WebUI.Controllers
                 var reader = lat.CreateReader();
                 reader.MoveToContent();
                 string resultLat = reader.ReadInnerXml();
+                store.Latitude = resultLat;
 
                 var reader2 = lng.CreateReader();
                 reader2.MoveToContent();
                 string resultLng = reader2.ReadInnerXml();
-
                 store.Longitude = resultLng;
-                store.Latitude = store.Latitude;
-
-                string resultLocation = $"{resultLat}, {resultLng}";
+               // string resultLocation = $"{resultLat}, {resultLng}";
 
 
                 storeContext.Insert(store);
                 storeContext.Commit();
 
-                return RedirectToAction("Index");
+                //  return RedirectToAction("Index");
+                return RedirectToAction("Details", new { Id = store.Id });
+               // return RedirectToAction("Details", new RouteValueDictionary(
+                 // new { controller = "StoreManager", action = "Details", Id = store.Id }));
             }
         }
 
