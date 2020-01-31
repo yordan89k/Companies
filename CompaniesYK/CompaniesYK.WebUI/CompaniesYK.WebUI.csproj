@@ -276,7 +276,6 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\CompanyManagerController.cs" />
-    <Compile Include="Controllers\GeocodingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -339,7 +338,6 @@
     <Folder Include="Content\CompanyImages\" />
     <Folder Include="Content\DesignImages\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Geocoding\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

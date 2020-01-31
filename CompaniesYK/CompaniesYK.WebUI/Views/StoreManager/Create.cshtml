@@ -86,6 +86,8 @@
                             </div>
                         </div>
 
+                        @*Right now I have those hidden fields to get info for the Geocoding. Tried to get it directly from the Form-controlls for hours,
+                            But couldn't do it. Created this temporary solution with help of JavaScript in the end.*@
                         <div class="hidden">
                             <input type="text" id="CountryField2" name="CountryField2" /> <br>
                             <input type="text" id="AdressField2" name="AdressField2" /> <br>
@@ -100,7 +102,6 @@
             }
         </div>
     </div>
-
 
 
     <div class="col-md-5 detailscont panel panel-info" style="float: right;">
@@ -120,6 +121,7 @@
 </div>
 
 
+@*JS functions for getting data while the user types in the controll-form fields*@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.min.js"></script>
 <script>
     $(function () {
@@ -159,4 +161,4 @@
 }
 
 
-@* Code for dropdown list - @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } }) *@
+@* If needed later - Code for dropdown list - @Html.DropDownListFor(model => model.Store.OwnerCompany, new SelectList(Model.Companies, "Name", "Name"), new { htmlAttributes = new { @class = "form-control" } }) *@

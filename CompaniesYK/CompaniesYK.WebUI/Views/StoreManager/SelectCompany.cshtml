@@ -4,34 +4,33 @@
     ViewBag.Title = "SelectCompany";
 }
 
+<br>
 <h2>Select a Company</h2>
+<br>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Logo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+<div class="col-md-12">
+    <div class="col-md-10">
+        <table class="table table-hover">
+            <tbody>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img class="img-thumbnail" style="width:150px" src="~/Content/CompanyImages/@item.Logo">
-            </td>
-            <td class="tableAccent">
-                @Html.DisplayFor(modelItem => item.Name)
+                @foreach (var item in Model)
+                {
+                    <tr class="tablePointer" onclick="location.href='@Url.Action("Create", "StoreManager", new { companyId = item.Id, companyName = item.Name })'">
+                        <td>
+                            <img class="img-thumbnail" style="width:150px" src="~/Content/CompanyImages/@item.Logo">
+                        </td>
+                        <td class="tableAccent" style="vertical-align: middle;">
+                            @Html.DisplayFor(modelItem => item.Name)
 
-            </td>
+                        </td>
 
-            <td>
-                @Html.ActionLink("Create a Store", "Create", new { companyId = item.Id, companyName = item.Name })
-            </td>
-        </tr>
-    }
+                        <td style="vertical-align: middle;">
+                            @Html.ActionLink("Create a Store", "Create", new { companyId = item.Id, companyName = item.Name })
+                        </td>
+                    </tr>
+                }
+            </tbody>
 
-</table>
+        </table>
+    </div>
+</div>

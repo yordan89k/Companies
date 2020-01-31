@@ -8,6 +8,7 @@ namespace CompaniesYK.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        // -- One day ... can add ViewModel to show list of companies, count of Stores and other usefull data at the home page --
         public ActionResult Index()
         {
             return View();

@@ -6,10 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
@@ -62,11 +59,13 @@ namespace CompaniesYK.WebUI.Controllers
             }
             else
             {
+                #region Geocoding with Google API
+
                 string CountryInp = Request.Form["CountryField2"];
                 string CityInp = Request.Form["CityField2"];
                 string AdressInp = Request.Form["AdressField2"];
-
-                // string ZipInp = Request.Form["ZipField2"];  - In case Zip needs to be included as well
+                // -- Right now I don't include Zip because there is enough info to find he address. --
+                // -- However, if needed just use this: string ZipInp = Request.Form["ZipField2"]; and add  {ZipInp} bellow --
                 string adressFull = $"{AdressInp}, {CityInp}, {CountryInp}";
 
                 string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressFull));
@@ -74,7 +73,7 @@ namespace CompaniesYK.WebUI.Controllers
                 WebRequest request = WebRequest.Create(requestUri);
                 WebResponse response = request.GetResponse();
 
-                //To try to get it with JSON
+                // -- Possible improvement: I can try to add JSON instead. Better practice according to Google
 
                 XDocument xdoc = XDocument.Load(response.GetResponseStream());
                 XElement result = xdoc.Element("GeocodeResponse").Element("result");
@@ -92,8 +91,7 @@ namespace CompaniesYK.WebUI.Controllers
                 reader2.MoveToContent();
                 string resultLng = reader2.ReadInnerXml();
                 store.Longitude = resultLng;
-               // string resultLocation = $"{resultLat}, {resultLng}";
-
+                #endregion
 
                 storeContext.Insert(store);
                 storeContext.Commit();
@@ -102,6 +100,7 @@ namespace CompaniesYK.WebUI.Controllers
             }
         }
 
+        // -- In Edit I use ViewModel so the user can select the Company from list with all existing companies in the Db
         public ActionResult Edit(Guid Id)
         {
             Store store = storeContext.Find(Id);
@@ -205,46 +204,6 @@ namespace CompaniesYK.WebUI.Controllers
             {
                 return View(store);
             }
-        }
-
-        public ActionResult GeocodeInput()
-        {
-            /*
-            string CountryInp = Request.Form["CountryField"];
-            string CityInp = Request.Form["CityField"];
-            string AdressInp = Request.Form["AdressField"];
-            string ZipInp = Request.Form["ZipField"];
-            string address = $"{ZipInp} {AdressInp}, {CityInp}, {CountryInp}";
-            */
-
-            string adressb = Request.Form["adressb"];
-
-            string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressb));
-
-            WebRequest request = WebRequest.Create(requestUri);
-            WebResponse response = request.GetResponse();
-
-            //To try to get it with JSON
-
-            XDocument xdoc = XDocument.Load(response.GetResponseStream());
-            XElement result = xdoc.Element("GeocodeResponse").Element("result");
-            XElement locationElement = result.Element("geometry").Element("location");
-
-            XElement lat = locationElement.Element("lat");
-            XElement lng = locationElement.Element("lng");
-
-            var reader = lat.CreateReader();
-            reader.MoveToContent();
-            string resultLat = reader.ReadInnerXml();
-
-            var reader2 = lng.CreateReader();
-            reader2.MoveToContent();
-            string resultLng = reader2.ReadInnerXml();
-
-            string resultLocation = $"{resultLat}, {resultLng}";
-
-            TempData["Message"] = resultLocation;
-            return RedirectToAction("Create", "StoreManager");
         }
     }
 }

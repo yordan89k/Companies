@@ -12,6 +12,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -38,6 +39,8 @@ section,
 summary {
     display: block;
 }
+
+/* -- Here starts a list of some custom classes I created for the project --*/
 
 .companiesbg {
     background-image: url('/Content/DesignImages/compbg.jpg');
@@ -87,6 +90,11 @@ summary {
     font-size: 120%;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.tablePointer {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.05), 0 5px 5px rgba(0,0,0,0.05);
 }
 
 #map {

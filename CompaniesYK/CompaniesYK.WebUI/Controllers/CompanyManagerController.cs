@@ -81,6 +81,7 @@ namespace CompaniesYK.WebUI.Controllers
                     return View(company);
                 }
 
+                // -- Created this option to attach a logo image to the company --
                 if (file != null)
                 {
                     companyToEdit.Logo = company.Id + Path.GetExtension(file.FileName);
