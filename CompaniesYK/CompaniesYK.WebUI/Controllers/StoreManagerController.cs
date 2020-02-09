@@ -61,12 +61,11 @@ namespace CompaniesYK.WebUI.Controllers
             {
                 #region Geocoding with Google API
 
-                string CountryInp = Request.Form["CountryField2"];
-                string CityInp = Request.Form["CityField2"];
-                string AdressInp = Request.Form["AdressField2"];
-                // -- Right now I don't include Zip because there is enough info to find he address. --
-                // -- However, if needed just use this: string ZipInp = Request.Form["ZipField2"]; and add  {ZipInp} bellow --
-                string adressFull = $"{AdressInp}, {CityInp}, {CountryInp}";
+                string CountryInp = store.Country;
+                string CityInp = store.City;
+                string AdressInp = store.Adress;
+                string ZipInp = store.Zip;
+                string adressFull = $"{ZipInp}, {AdressInp}, {CityInp}, {CountryInp}";
 
                 string requestUri = string.Format("https://maps.googleapis.com/maps/api/geocode/xml?key=AIzaSyAzM-iistE3bx7Y86YPpfYuPQM76uKVzu4&address={0}=false", Uri.EscapeDataString(adressFull));
 
@@ -91,6 +90,7 @@ namespace CompaniesYK.WebUI.Controllers
                 reader2.MoveToContent();
                 string resultLng = reader2.ReadInnerXml();
                 store.Longitude = resultLng;
+
                 #endregion
 
                 storeContext.Insert(store);

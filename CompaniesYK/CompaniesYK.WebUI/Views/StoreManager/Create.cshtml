@@ -43,7 +43,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Store.Name, htmlAttributes: new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Store.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Store.Name, new { htmlAttributes = new { @class = "form-control", @minlength="3" } })
                                 @Html.ValidationMessageFor(model => model.Store.Name, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Store.Country, htmlAttributes: new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new { @class = "form-control", @id = "CountryField", @name = "CountryField" } })
+                                @Html.EditorFor(model => model.Store.Country, new { htmlAttributes = new {@class = "form-control", @id = "CountryField", @name = "CountryField" } })
                                 @Html.ValidationMessageFor(model => model.Store.Country, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -65,17 +65,19 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-3" })
+                            
+                                @Html.LabelFor(model => model.Store.City, htmlAttributes: new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control", @id = "CityField", @name = "CityField" } })
-                                @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Store.City, new { htmlAttributes = new { @class = "form-control", @id = "CityField", @name = "CityField", @minlength="3" } })
+                                    @Html.ValidationMessageFor(model => model.Store.City, "", new { @class = "text-danger" })
                             </div>
+                            
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.Store.Zip, htmlAttributes: new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "input", @type = "number", @id = "ZipField", @name = "CityField" } })
+                                @Html.EditorFor(model => model.Store.Zip, new { htmlAttributes = new { @class = "input", @type = "number", @id = "ZipField", @name = "CityField",  @min="0" } })
                                 @Html.ValidationMessageFor(model => model.Store.Zip, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -85,17 +87,6 @@
                                 <input type="submit" value="Create" class="btn btn-default" />
                             </div>
                         </div>
-
-                        @*Right now I have those hidden fields to get info for the Geocoding. Tried to get it directly from the Form-controlls for hours,
-                            But couldn't do it. Created this temporary solution with help of JavaScript in the end.*@
-                        <div class="hidden">
-                            <input type="text" id="CountryField2" name="CountryField2" /> <br>
-                            <input type="text" id="AdressField2" name="AdressField2" /> <br>
-                            <input type="text" id="CityField2" name="CityField2" /> <br>
-                            <input type="text" id="ZipField2" name="ZipField2" /> <br>
-                        </div>
-                        <br>
-
                     </div>
                 </div>
 
@@ -110,7 +101,7 @@
         </div>
         <div class="panel-body">
             <p>This store is already linked to the company you selencted. Company's name and Id will be stored in the DataBase.</p>
-            <img class="iconintext" src="~/Content/DesignImages/maps.png"  />
+            <img class="iconintext" src="~/Content/DesignImages/maps.png" />
             <p>
                 Based on the address you enter GPS coordinates (Latitude and Longitude)
                 will be generated with the help of Gooogle Maps API and automatically stored in the DataBase. You can edit the later if needed.
@@ -119,41 +110,6 @@
     </div>
 
 </div>
-
-
-@*JS functions for getting data while the user types in the controll-form fields*@
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.min.js"></script>
-<script>
-    $(function () {
-        $("#CountryField").change(function () {
-            $('#CountryField2').val(this.value);
-
-        });
-    });
-
-    $(function () {
-        $("#AdressField").change(function () {
-            $('#AdressField2').val(this.value);
-
-        });
-    });
-
-    $(function () {
-        $("#CityField").change(function () {
-            $('#CityField2').val(this.value);
-
-        });
-    });
-
-    $(function () {
-        $("#ZipField").change(function () {
-            $('#ZipField2').val(this.value);
-
-        });
-    });
-
-
-</script>
 
 
 @section Scripts {
