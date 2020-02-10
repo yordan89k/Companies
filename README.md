@@ -4,7 +4,7 @@
 - Validations on user input when creating Store
 - Geocoding when creating a Store (Controller automatically gets Longitude and Latitude of address through Google API).
 - User selects a company from a list so the Backend can bind its Unique ID and the new store's Foreign Key
-- Drop down menu with existing companies' names on Store Edit page
+- Drop down menu with existing companies' names on Store Edit page (View Model)
 
 # See the project in action
 (2 min video, EN)
