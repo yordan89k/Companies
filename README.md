@@ -13,3 +13,6 @@
 
 ---------------
 Expect improvements and new functions in near future.
+
+CURENTLY WORKING ON: 
+- Improving the **form validation** when creating a new Store with JavaScipt server based validation
