@@ -6,7 +6,7 @@
 - User selects a company from a list so the Backend can bind its Unique ID and the new store's Foreign Key
 - Drop down menu with existing companies' names on Store Edit page (View Model)
 
-# See the project in action
+# See it in action (Video)
 (2 min video, EN)
 
 [![Alt text](https://img.youtube.com/vi/nxLr9Sv9Ezc/0.jpg)](https://www.youtube.com/watch?v=nxLr9Sv9Ezc)
