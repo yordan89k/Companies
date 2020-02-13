@@ -1,7 +1,7 @@
  An ASP.NET MVC5 1-week project with functionalities such as:
 
 - User can Create, Edit, Delete, see Details of companies and stores in a local SQP DataBase
-- Validations on user input when creating Store
+- Form Validations on creating a Store using C# DataType Attributes on Razor Pages
 - Geocoding when creating a Store (Controller automatically gets Longitude and Latitude of address through Google API).
 - User selects a company from a list so the Backend can bind its Unique ID and the new store's Foreign Key
 - Drop down menu with existing companies' names on Store Edit page (View Model)
