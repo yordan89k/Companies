@@ -14,5 +14,7 @@
 ---------------
 Expect improvements and new functions in near future.
 
-CURENTLY WORKING ON: 
-- Improving the **form validation** when creating a new Store with JavaScipt server based validation
+# Further Improvements and Upgrades:
+- 2020-Feb-7: Get rid of a lot of unnecessary code in the Geocoding method, including a JavaScript Section on Create Page.   
+- 2020-Feb-13: Included more validation rules and removed the ones from HTML attributes so all is at one place
+![Validation](/Content/DesignImages/val.jpg)
